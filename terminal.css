@@ -8,16 +8,19 @@ body, pre, span, input {
   font: 1em 'Inconsolata';
   color: #181818;
   font-weight: 400;
-  max-width: 28em;
-  margin:0 0.5em;
   padding:0;
 }
 
 textarea, input, button, select { font-family: inherit; font-size: inherit; }
 
+span.command {
+  width:90%
+}
 input[type="text"]{
+  margin:0 0.5em;
   border: none;
   background: #fff;
+  width:50%
 }
 input[type="text"]:focus{
   background: #fff;
