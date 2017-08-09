@@ -49,7 +49,7 @@ function doCommand(issuedCommand) {
         doCommandPosition(commandArgs[1]);
         break;
       case "apply":
-        doCommandApply(commandArgs);
+        doCommandApply(commandArgs[1]);
         break;
       case "clear":
           doCommandClear()
@@ -96,9 +96,8 @@ function _getPositionByKey(key) {
   return //not found
 }
 
-function doCommandApply(arguments) {
-  if (arguments.length>=3) {
-    var key = arguments[1];
+function doCommandApply(key) {
+  if (key) {
     var position = _getPositionByKey(key);
     if (position) {
       var mailURL = "mailto:" + emailRecipient + "?subject=Position%20" + position.key + "&body=Please%20get%20back%20to%20me%20with%20more%20info";
@@ -111,7 +110,7 @@ function doCommandApply(arguments) {
       histo.append("<pre>No position found for key " + key + "</pre>");
     }
   } else {
-    histo.append("<pre>Missing arguments</pre>");
+    histo.append("<pre>Missing position key</pre>");
   }
 }
 
@@ -124,8 +123,8 @@ function doCommandHelp() {
     + "These shell commands are defined internally.  Type 'help' to see this list.\n"
     + "Type 'help name' to find out more about the function 'name'\n\n"
     + "positions                  get list of open positions\n"
-    + "position positionId        get info about specific position\n"
-    + "apply positionId yourinfo  apply to an open position\n"
+    + "position key               get info about specific 'key' position\n"
+    + "apply key                  apply to an open 'key' position\n"
     + "clear                      clear history\n"
     + "</pre>");
 }
