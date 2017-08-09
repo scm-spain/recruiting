@@ -23,6 +23,9 @@ $(document).ready(function() {
   commandInput.keyup(function(e){
     if(e.which == 13){// ENTER key pressed
       var issuedCommand = commandInput.val();
+      if (issuedCommand) {
+        issuedCommand=issuedCommand.replace(/[^a-z0-9\s]/gi, '') // sanitize
+      }
       doCommand(issuedCommand);
     }
   });
@@ -43,6 +46,9 @@ function doCommand(issuedCommand) {
       case "position":
         doCommandPosition(commandArgs[1]);
         break;
+      case "clear":
+          doCommandClear()
+          break;
       case "help":
         doCommandHelp()
         break;
@@ -79,12 +85,17 @@ function doCommandPositions() {
     }
 }
 
+function doCommandClear() {
+  histo.empty();
+}
+
 function doCommandHelp() {
   histo.append("Schibsted Spain recruitment console\n");
   histo.append("These shell commands are defined internally.  Type 'help' to see this list.\n");
   histo.append("Type 'help name' to find out more about the function 'name'\n\n");
-  histo.append("positions\t\tget list of open positions\n")
-  histo.append("position positionId\tget info about specific position\n")
+  histo.append("positions              get list of open positions\n");
+  histo.append("position positionId    get info about specific position\n");
+  histo.append("clear                  clear history");
 }
 
 function doCommandUnknown(command) {
