@@ -55,7 +55,11 @@ function doCommand(issuedCommand) {
           doCommandClear()
           break;
       case "help":
-        doCommandHelp()
+        if (commandArgs.length==1) {
+          doCommandHelp()
+        } else {
+          doCommandNotImplementedYet();
+        }
         break;
       default :
         doCommandUnknown(commandArgs[0]);
@@ -126,9 +130,13 @@ function doCommandHelp() {
     + "position key               get info about specific 'key' position\n"
     + "apply key                  apply to an open 'key' position\n"
     + "clear                      clear history\n"
+    + "help                       show this list of available commands\n"
     + "</pre>");
 }
 
+function doCommandNotImplementedYet() {
+  histo.append("<pre>Sorry this command is not implemented yet</pre>")
+}
 function doCommandUnknown(command) {
   histo.append("<pre>" + command + " : command not found</pre>");
 }
