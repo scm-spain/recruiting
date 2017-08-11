@@ -78,7 +78,7 @@ function doCommandPosition(key) {
       histo.append("<pre>key: " + position.key + "\n"
         + "role: " + position.role + "</pre>");
     } else {
-      histo.append("<pre>No position found for key " + key + "</pre>");
+      histo.append("<pre>No position found for key '" + key + "'</pre>");
     }
   } else {
     histo.append("<pre>Missing position key</pre>");
